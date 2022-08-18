@@ -1,11 +1,17 @@
-import { BryntumGantt } from '@bryntum/gantt-react';
-import { ganttConfig } from './GanttConfig';
+import { useRef } from 'react';
+import { BryntumGantt, BryntumProjectModel } from '@bryntum/gantt-react';
+import { ganttConfig } from './GanttMissionMarsConfig';
+import { projectConfig } from './ProjectConfig';
 import './App.scss';
 
 function App() {
-    return (
-        <BryntumGantt {...ganttConfig} />
-    );
+  const project = useRef();
+  return (
+    <>
+      <BryntumProjectModel {...projectConfig} ref={project} />
+      <BryntumGantt {...ganttConfig} project={project} />
+    </>
+  );
 }
 
 // If you plan to use stateful React collections for data binding please check this guide
