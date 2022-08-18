@@ -12,6 +12,38 @@ const ganttConfig = {
   },
   // to add filtering option on every column grid header
   filterFeature: true,
+  taskMenuFeature: {
+    items: {
+      moveForward: {
+        text: 'Move 1 day ahead',
+        weight: 80,
+        onItem: ({ taskRecord }) => {
+          taskRecord.shift(1, 'day');
+        },
+      },
+      moveBackward: {
+        text: 'Move 1 day before',
+        weight: 90,
+        onItem: ({ taskRecord }) => {
+          taskRecord.shift(-1, 'day');
+        },
+      },
+      // Rename "Delete task" item
+      deleteTask: {
+        text: 'Delete this task',
+      },
+      // Rename "Edit task" item
+      editTask: {
+        text: 'Update this task',
+      },
+      add: {
+        menu: {
+          // Only added to the left grid as it's a filter
+          filterDateEquales: true,
+        },
+      },
+    },
+  },
   taskRenderer({ taskRecord, renderData }) {
     // console.log('taskRenderer', { taskRecord, renderData });
     // console.log('taskRecord.name', taskRecord.name);
